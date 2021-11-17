@@ -8,4 +8,4 @@ class HomePageTest(TestCase):
             request = HttpRequest()  #1
             response = home(request)  #2
             # self.assertEqual(b'Hello World! Devops IA2', response.content)  #4
-            assert response.status_code == 200
+            assert response.status_code == 400
