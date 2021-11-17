@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.http import HttpRequest
-from .views import home
+from dop.views import home
 
 class HomePageTest(TestCase):
 
