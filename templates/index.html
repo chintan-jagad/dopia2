@@ -1,0 +1,372 @@
+<body>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        /* ------- BODY AND ELEMENTS ------- */
+        body {
+            background-color: white;
+            margin: auto;
+            min-width: 500px;
+        }
+
+        header {
+            background-color: black;
+            background: url(https://images.pexels.com/photos/943900/pexels-photo-943900.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500), rgba(50, 125, 175, 0.5);
+            background-blend-mode: screen;
+            background-size: cover;
+            padding: 2rem;
+        }
+
+        main {
+            background-color: white;
+        }
+
+        h1,
+        h2,
+        p {
+            /* color: #77; */
+            font-family: Tahoma;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 70px;
+            padding: 30px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: .7;
+            padding: 45px 0 2px;
+        }
+
+        .header-para {
+            display: flex;
+            font-size: 13.5px;
+            opacity: .5;
+            justify-content: center;
+            padding: 0 0 25px;
+        }
+
+        .header-para div {
+            width: 25%;
+        }
+
+        .header-para p {
+            width: auto;
+        }
+
+        /*
+ol {
+  color: #748493;
+  font-family: "Courier New";
+  font-size: 1.4rem;  
+}
+*/
+
+        a,
+        a:hover,
+        a:visited {
+            color: inherit;
+        }
+
+        /* Changed the fontstyle to ilaics, rather than the "font-weight: bold" property because I couldn't remove the column-shift that kept occuring while on hover. I tried adopting the following method, but was unsuccessful in implementing it; reference: https://css-tricks.com/bold-on-hover-without-the-layout-shift/ */
+        footer a:hover {
+            font-style: italic;
+        }
+
+        button a:hover {
+            font-weight: 700;
+        }
+
+        /* I understand that "display: flex" and "position: absolute" are not usually put together. However, the absolute positioning was necessary in order to keep the text properly positioned within their relative-positioned parent container("img-tran"). This caused problems with center the flexbox, as the asbolute positioning was voiding all flexbox properties; however, I managed to find a way of centering it using "align-self: center" property. For reference, this is the source that aided in bringing me to this conclusion: https://chenhuijing.com/blog/flexbox-and-absolute-positioning/  */
+        .img-tran p {
+            align-self: center;
+            display: flex;
+            color: rgba(0, 0, 0, .85);
+            flex-direction: column;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .05rem;
+            opacity: 0;
+            position: absolute;
+            width: 75%;
+            z-index: 0;
+        }
+
+        .joke {
+            color: rgba(0, 0, 0, .8);
+            font-size: .85rem;
+            font-weight: 500;
+            padding: 15px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .learn-more-btn {
+            background-color: rgba(50, 125, 175, 0.75);
+            /* 
+  background-color: #2F91FB; 
+  border-radius: 25px;
+  */
+            border: none;
+            color: white;
+            font-size: 25px;
+            margin: 25px 0 75px;
+            padding: 10px 20px;
+        }
+
+        /* ------- FOOTER ELEMENTS ------- */
+        footer {
+            display: block;
+            background-color: rgb(105, 105, 105);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 30% 30% 30%;
+            grid-template-rows: 1fr;
+            justify-content: center;
+        }
+
+        .info-column {
+            align-items: center;
+            color: rgba(255, 255, 255, .7);
+            display: flex;
+            flex-direction: column;
+            padding: 45px;
+            text-align: left;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li a {
+            letter-spacing: .05rem;
+            min-width: 90px;
+        }
+
+        footer li:nth-child(1) {
+            color: rgba(255, 255, 255, .5);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* ------- IMAGES IN MAIN CONTENT ------- */
+        .gallery-container {
+            background-color: inherit;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 290px 1fr 290px;
+            margin: auto;
+            max-width: 1100px;
+            padding: 10px;
+        }
+
+        img {
+            max-height: 490px;
+            max-width: 500px;
+            object-fit: cover;
+            padding: 10px;
+        }
+
+        .img-block-top,
+        .img-block-middle,
+        .img-block-bottom {
+            display: flex;
+            justify-content: center;
+            display: flex;
+        }
+
+        .img-tran {
+            display: flex;
+            justify-content: center;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .img-wrap {
+            max-height: 290px;
+            max-width: 580px;
+            width: 50%;
+        }
+
+        .img-wrap-center {
+            width: 40%;
+        }
+
+        .img-wrap-outer {
+            width: 30%;
+        }
+
+        .top-img,
+        .bottom-img {
+            max-height: 290px;
+            max-width: 580px;
+            width: 100%;
+        }
+
+        .center-img,
+        .outer-img {
+            width: 100%;
+        }
+
+        main img:hover {
+            filter: blur(1.5px);
+            padding: 3px;
+
+        }
+
+        .img-tran:hover p {
+            opacity: 1;
+        }
+
+        .img-tran * {
+            transition: all 0.45s ease;
+        }
+
+        .img-tran:hover img {
+            opacity: .5;
+        }
+    </style>
+    <header>
+        <h1>PRODUCT DETAILS</h1>
+    </header>
+
+    <main>
+
+        <h2>place mouse over images for product details</h2>
+        <div class="header-para">
+            <div></div>
+            <p>We know how much you love alpacas, so we've discreetly placed our product details behind some images of
+                your favorite animal!</p>
+            <div></div>
+        </div>
+
+        <div class="gallery-container">
+
+            <div class="img-block-top">
+                <div class="img-wrap img-tran">
+                    <p>Our products were built with comfort in mind!<br><span class="joke">(...you'll be as comfy as a
+                            baby alpacca swaddled in a blankey!)</span></p>
+                    <img class="top-img"
+                        src="https://images.pexels.com/photos/3947403/pexels-photo-3947403.jpeg?cs=srgb&dl=pexels-rodolfo-clix-3947403.jpg&fm=jpg"
+                        alt="Person holding a baby alpaca, wrapped in a brightly-colored blanket (Photo by Rodolfo Clix from Pexels.com).">
+                </div>
+
+                <div class="img-wrap img-tran">
+                    <p>Our products should be hand-washed, and dry-cleaned only!<br><span class="joke">(...just like our
+                            alpacas!)</span></p>
+                    <img class="top-img"
+                        src="https://images.pexels.com/photos/1300364/pexels-photo-1300364.jpeg?cs=srgb&dl=pexels-magda-ehlers-1300364.jpg&fm=jpg"
+                        alt="Close-up on head of a brown, fuzzy aplaca (photo by Magda Ehlers from Pexels.com).">
+                </div>
+            </div>
+
+            <div class="img-block-middle">
+                <div class="img-wrap-outer img-tran">
+                    <p>Our materials are 80% alpaca & 20% cotton!<br><span class="joke">(...we try to keep our alpaca's
+                            out of the Gossypium Fields, but they just keep hopping the fence!)</span></p>
+                    <img class="outer-img"
+                        src="https://images.pexels.com/photos/2847475/pexels-photo-2847475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        alt="An alpaca standing in a beautiful mountain vista (photo by Trace Hudson from Pexels.com).">
+                </div>
+
+                <div class="img-wrap-center img-tran">
+                    <p>Every item we make is constructed with love and care in Japan!<br><span class="joke">(...our joke
+                            team had nothing clever to say here, because even they know there's nothing funny about
+                            love!)</p>
+                    <img class="center-img"
+                        src="https://images.pexels.com/photos/4099051/pexels-photo-4099051.jpeg?cs=srgb&dl=pexels-taryn-elliott-4099051.jpg&fm=jpg"
+                        alt="A woman in a white shirt gets a smooch from an alpaca (photo by Taryn Elliott from Pexels.com).">
+                </div>
+
+                <div class="img-wrap-outer img-tran">
+                    <p>Our products were designed to repel odors!<br><span class="joke">(...so you can stay smelling
+                            like a fresh mountaintop breeze!)</span></p>
+                    <img class="outer-img"
+                        src="https://images.pexels.com/photos/3214992/pexels-photo-3214992.jpeg?cs=srgb&dl=pexels-alex-azabache-3214992.jpg&fm=jpg"
+                        alt="A brown alpaca on a high hill (photo by Alex Azabache from Pexels.com).">
+                </div>
+            </div>
+
+            <div class="img-block-bottom">
+                <div class="img-wrap img-tran">
+                    <p>Our products are 100% organic!<br><span class="joke">(...no synthetic alpacas here!)</span></p>
+                    <img class="bottom-img"
+                        src="https://images.pexels.com/photos/5869745/pexels-photo-5869745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                        alt="Two alpacas staring deeply into the camera lens (photo by E M from Pexels.com).">
+                </div>
+
+                <div class="img-wrap img-tran">
+                    <p>This is "Bob". Bob doesn't know he isn't a sheep.<br><span class="joke">(...but he still approves
+                            of our products!)</span></p>
+                    <img class="bottom-img"
+                        src="https://images.pexels.com/photos/4302783/pexels-photo-4302783.jpeg?cs=srgb&dl=pexels-traveling-inka-4302783.jpg&fm=jpg"
+                        alt="Definitely 'not a sheep' wearing a rainbow scarf...Its an alpaca. Yes, most definitely. (Photo by Traveling Inka from Pexels).">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Decided to replace these instructions by placing the desired text as a hover overlay on the images in my words.
+      <ol>
+        <li>80% alpaca wool, 20% cotton</li>
+        <li>Hand-wash, Dry clean only</li>
+        <li>Made in Japan</li>
+      </ol>
+  -->
+
+
+        <div class="button-container">
+            <button class="learn-more-btn"><a href="#">Learn more</a></button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="info-column">
+                <ul>
+                    <li>About Us</li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Alpacas</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Renewabilty</a></li>
+                </ul>
+            </div>
+            <div class="info-column">
+                <ul>
+                    <li>Products</li>
+                    <li><a href="#">Tops</a></li>
+                    <li><a href="#">Bottoms</a></li>
+                    <li><a href="#">Scarfs</a></li>
+                    <li><a href="#">Details</a></li>
+                </ul>
+            </div>
+            <div class="info-column">
+                <ul>
+                    <li>Contact Us</li>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Phone</a></li>
+                    <li><a href="#">Fax</a></li>
+                    <li><a href="#">Address</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
